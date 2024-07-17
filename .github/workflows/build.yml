@@ -15,7 +15,7 @@ jobs:
         run: sudo apt-get install autoconf build-essential libavahi-client-dev libavahi-common-dev golang libusb-1.0-0-dev -y
 
       - name: Install 
-        run: go install github.com/jstemmer/gotags@latest
+        run: go get -u github.com/jstemmer/gotags
 
       - name: Build
         run: make
