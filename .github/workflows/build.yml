@@ -1,0 +1,27 @@
+name: Build and upload
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+  
+      - name: Install required packages
+        run: sudo apt-get install autoconf build-essential libavahi-client-dev libavahi-common-dev golang libusb-1.0-0-dev -y
+
+      - name: Install 
+        run: go install github.com/jstemmer/gotags@latest
+
+      - name: Build
+        run: make
+
+      - name: Publish
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipp-usb
+          path: archives/ipp-usb
